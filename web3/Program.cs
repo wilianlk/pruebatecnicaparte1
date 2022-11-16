@@ -7,25 +7,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-/*builder.Services.AddCors(p => p.AddDefaultPolicy(build =>
+builder.Services.AddCors(option =>
 {
-    build.WithOrigins("http://localhost");
-    build.AllowAnyMethod();
-    build.AllowAnyHeader();
-}));*/
-
-/*builder.Services.AddCors(p => p.AddPolicy("policy1",build =>
-{
-    build.WithOrigins("http://localhost");
-    build.AllowAnyMethod();
-    build.AllowAnyHeader();
-}));*/
-
-builder.Services.AddCors(septup =>
-{
-    septup.AddDefaultPolicy(policyBuilder =>
+    option.AddPolicy("NuvaPolitica", app =>
     {
-        policyBuilder.WithOrigins("http://localhost/test/");
+        app.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
     });
 });
 
@@ -38,9 +24,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors("NuvaPolitica");
 
-app.UseCors();
+app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
