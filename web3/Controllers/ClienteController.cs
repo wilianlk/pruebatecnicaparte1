@@ -19,10 +19,9 @@ namespace web3.Controllers
         public async Task<string> Listar()
         {
             var client = new HttpClient();
-            string response = await client.GetStringAsync("https://qastudiof.myvtex.com/api/catalog_system/pub/products/search/?fq=productId:5068");
+            string response = await client.GetStringAsync("https://qastudiof.myvtex.com/api/catalog_system/pub/products/search");
 
             return response;
-            
 
         }
 
