@@ -36,6 +36,7 @@ function App() {
     var resultadosBusqueda=tablaUsuarios.filter((elemento)=>{
 
       if(elemento.productId.toString().includes(terminoBusqueda.toLowerCase())
+          || elemento.productName.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
       ){
         return elemento;
       }
@@ -55,7 +56,7 @@ function App() {
           <input
               className="form-control inputBuscar"
               value={busqueda}
-              placeholder="Búsqueda por ID producto"
+              placeholder="Búsqueda por ID producto o Nombre Producto"
               onChange={handleChange}
           />
           <button className="btn btn-success">
@@ -67,7 +68,7 @@ function App() {
           <table className="table table-sm table-bordered">
             <thead>
             <tr>
-              <th>ID</th>
+              <th>ID Producto</th>
               <th>Nombre del Producto</th>
               <th>Referencia</th>
               <th>Categoria</th>
@@ -75,7 +76,6 @@ function App() {
               <th>Marca</th>
             </tr>
             </thead>
-
             <tbody>
             {usuarios &&
                 usuarios.map((usuario) => (
@@ -89,9 +89,7 @@ function App() {
                     </tr>
                 ))}
             </tbody>
-
           </table>
-
         </div>
         </div>
       </div>
